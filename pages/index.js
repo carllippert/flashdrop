@@ -78,7 +78,7 @@ export default function Home() {
   return (
     <div className="max-w-lg mt-36 mx-auto text-center px-4">
       <Head>
-        <title>Solidity Next.js Starter</title>
+        <title>Welcome to FlashDrop!</title>
         <meta name="description" content="Interact with a simple smart contract from the client-side." />
         <link rel="icon" href="/favicon.ico" />
       </Head>
@@ -91,7 +91,7 @@ export default function Home() {
         ) : (
           <>
             <h1 className="text-4xl font-semibold mb-8">
-              Solidity Next.js Starter
+              Welcome to FlashDrop!
             </h1>
             <div className="space-y-8">
                 <div className="flex flex-col space-y-4">

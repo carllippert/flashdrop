@@ -2,7 +2,7 @@ import Head from 'next/head'
 import { useEffect, useState, useRef } from 'react'
 import { ethers } from 'ethers'
 import { hasEthereum } from '../utils/ethereum'
-import Greeter from '../src/artifacts/contracts/Greeter.sol/Greeter.json'
+// import Greeter from '../src/artifacts/contracts/Greeter.sol/Greeter.json'
 
 export default function Home() {
   const [greeting, setGreetingState] = useState('')

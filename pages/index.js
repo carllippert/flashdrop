@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { useEffect, useState, useRef } from 'react'
 import { ethers } from 'ethers'
-import { hasEthereum } from '../utils/ethereum'
+import { hasMetamask } from '../utils/ethereum'
 // import Greeter from '../src/artifacts/contracts/Greeter.sol/Greeter.json'
 
 export default function Home() {
@@ -13,7 +13,7 @@ export default function Home() {
 
   // If wallet is already connected...
   useEffect( () => {
-    if(! hasEthereum()) {
+    if(! hasMetamask()) {
       setConnectedWalletAddressState(`MetaMask unavailable`)
       return
     }
@@ -38,7 +38,7 @@ export default function Home() {
 
   // Call smart contract, fetch current value
   async function fetchGreeting() {
-    if ( ! hasEthereum() ) {
+    if ( ! hasMetamask() ) {
       setConnectedWalletAddressState(`MetaMask unavailable`)
       return
     }
@@ -54,7 +54,7 @@ export default function Home() {
 
   // Call smart contract, set new value
   async function setGreeting() {
-    if ( ! hasEthereum() ) {
+    if ( ! hasMetamask() ) {
       setConnectedWalletAddressState(`MetaMask unavailable`)
       return
     }

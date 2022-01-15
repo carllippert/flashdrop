@@ -1,6 +1,6 @@
 // Check for MetaMask wallet browser extension
-function hasEthereum () {
+function hasMetamask () {
     return typeof window !== 'undefined' && typeof window.ethereum !== 'undefined'
 }
 
-export { hasEthereum }
+export { hasMetamask }

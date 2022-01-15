@@ -2,6 +2,7 @@ import Head from 'next/head'
 import { useEffect, useState, useRef } from 'react'
 import { ethers } from 'ethers'
 import { hasEthereum } from '../utils/ethereum'
+import Avatar from '../components/Avatar'
 // import Greeter from '../src/artifacts/contracts/Greeter.sol/Greeter.json'
 
 export default function Home() {
@@ -78,8 +79,8 @@ export default function Home() {
   return (
     <div className="max-w-lg mt-36 mx-auto text-center px-4">
       <Head>
-        <title>Welcome to FlashDrop!</title>
-        <meta name="description" content="Interact with a simple smart contract from the client-side." />
+        <title>FlashDrop</title>
+        <meta name="description" content="Fund your flash mob." />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -90,9 +91,8 @@ export default function Home() {
             </p>
         ) : (
           <>
-            <h1 className="text-4xl font-semibold mb-8">
-              Welcome to FlashDrop!
-            </h1>
+           
+            <Avatar />
             <div className="space-y-8">
                 <div className="flex flex-col space-y-4">
                   <input

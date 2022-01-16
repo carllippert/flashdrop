@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { useEffect, useState, useRef } from 'react'
 import { ethers } from 'ethers'
-import { hasEthereum } from '../utils/ethereum'
+import { hasMetamask } from '../utils/ethereum'
 import Avatar from '../components/Avatar'
 
 const Greeter = { abi: null } // TODO: replace Greeter stuff with Flashdrop
@@ -22,7 +22,7 @@ export default function Home() {
 
   // If wallet is already connected...
   useEffect( () => {
-    if(! hasEthereum()) {
+    if(! hasMetamask()) {
       setConnectedWalletAddressState(`MetaMask unavailable`)
       return
     }
@@ -47,7 +47,7 @@ export default function Home() {
 
   // Call smart contract, fetch current value
   async function fetchGreeting() {
-    if ( ! hasEthereum() ) {
+    if ( ! hasMetamask() ) {
       setConnectedWalletAddressState(`MetaMask unavailable`)
       return
     }
@@ -63,7 +63,7 @@ export default function Home() {
 
   // Call smart contract, set new value
   async function setGreeting() {
-    if ( ! hasEthereum() ) {
+    if ( ! hasMetamask() ) {
       setConnectedWalletAddressState(`MetaMask unavailable`)
       return
     }

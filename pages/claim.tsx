@@ -3,6 +3,7 @@ import Head from 'next/head'
 import { useEffect, useState } from 'react'
 import { ethers } from 'ethers'
 import Avatar from '../components/Avatar'
+import StreamConnect from '../components/StreamConnect'
 
 const Home: NextPage = () => {
   const [connectedWalletAddress, setConnectedWalletAddress] = useState('')
@@ -54,15 +55,15 @@ const Home: NextPage = () => {
 
         </header>
         <Avatar />
+        <StreamConnect />
 
-
-        {connectedWalletAddress ? (
+        {/* {connectedWalletAddress ? (
           <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-4 px-8 rounded space-y-3.5">Claim my token stream</button>
         ) : (
           <p className="text-md">
             Get started by connecting your MetaMask account
           </p>
-        )}
+        )} */}
 
         <h1 className="title text-white">
           Learn about streaming <a href="https://www.superfluid.finance/home" className='link'>Super Tokens</a>
@@ -70,14 +71,14 @@ const Home: NextPage = () => {
       </main>
 
       <footer className="mt-20">
-        <a
+        {/* <a
           href="https://github.com/tomhirst/solidity-nextjs-starter/blob/main/README.md"
           target="_blank"
           rel="noopener noreferrer"
           className="text-blue-600 hover:text-blue-700"
         >
           Read the docs
-        </a>
+        </a> */}
       </footer>
     </div>
   )

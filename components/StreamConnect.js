@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const Minter = (props) => {
+const StreamConnect = (props) => {
 
   //State variables
   const [walletAddress, setWallet] = useState("");
@@ -22,7 +22,7 @@ const Minter = (props) => {
   };
 
   return (
-    <div className="Minter p-10">
+    <div className="StreamConnect p-12">
       <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-4 px-8 rounded space-y-3.5" id="walletButton" onClick={connectWalletPressed}>
         {walletAddress.length > 0 ? (
           "Connected: " +
@@ -35,20 +35,17 @@ const Minter = (props) => {
       </button>
 
       <br></br>
-      <div className="flex w-full p-10">
-
-<p className='text-white'>Create your campaign to start airdropping tokens to your flash mob!</p>
+      
+<div className="flex w-full p-10">
+<p className='text-white'>Tokens will stream for the duration of the ad period or until funds are exhausted.</p>
 </div>
 <div>
-<p className='text-white'>Step 1: Connect your wallet.</p>
-</div>
-<div>
-<p className='text-white'>Step 2: Mint your QR code below.</p>
+<p className='text-white'>The tokens are yours as soon as they land in your wallet. Enjoy!</p>
 </div>
 <div>&nbsp; </div>
 <br></br>
       <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-4 px-8 rounded space-y-3.5" id="mintButton" onClick={onMintPressed}>
-        Mint Your QR Code
+        Claim My Token Stream
       </button>
       <p id="status">
         {status}
@@ -57,4 +54,4 @@ const Minter = (props) => {
   );
 };
 
-export default Minter;
+export default StreamConnect;

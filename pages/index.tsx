@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { ethers, Wallet } from 'ethers'
 import Avatar from '../components/Avatar'
 import Minter from '../components/Minter'
-import WalletConnect from '../components/WalletConnect'
+
 
 const Home: NextPage = () => {
   const [connectedWalletAddress, setConnectedWalletAddress] = useState('')
@@ -59,21 +59,20 @@ const Home: NextPage = () => {
             Get started by connecting your MetaMask account
           </p>
         )} */}
-<div></div>
         <h1 className="title text-white">
           Learn about streaming <a href="https://www.superfluid.finance/home" className='link'>Super Tokens</a>
         </h1>
       </main>
 
       <footer className="mt-20">
-        <a
+        {/* <a
           href="https://github.com/tomhirst/solidity-nextjs-starter/blob/main/README.md"
           target="_blank"
           rel="noopener noreferrer"
           className="text-blue-600 hover:text-blue-700"
         >
           Read the docs
-        </a>
+        </a> */}
       </footer>
     </div>
   )

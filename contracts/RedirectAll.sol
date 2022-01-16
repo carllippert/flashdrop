@@ -27,18 +27,9 @@ contract RedirectAll is SuperAppBase {
   //a url schem like flashdrop.xyz/depoloyedClaimContractAddress/UUID -> pool access
 //    mapping(string => uint) private flahsDropBalances; 
 
-//     //storage of total people
-//     mapping(string => uint) private flashDropMaxClaims; 
-
-//     //storage of flowRate
-//     mapping(string => uint) private flashDropTotalFlowRate; 
-
-    mapping(string => Flashdrop) public flashDrops;
-
-    //    //storage for people who have claimed a flashdrop Balance
-    // mapping(string => address[]) private flashDropClaimers; 
-
-//flow
+mapping(string => Flashdrop) public flashDrops;
+  
+    //flow
 
     constructor(
         ISuperfluid host,
@@ -67,31 +58,43 @@ contract RedirectAll is SuperAppBase {
 
         _host.registerApp(configWord);
     }
-  /**************************************************************************
+    /**************************************************************************
      * Flashdrop Logic
      *************************************************************************/
     
-    function _claimFlashDrop(string memory uuid, address newFlashdropClaimer) internal {
+    function _claimFlashDrop(string memory uuid, address receiver) internal {
 
             //create a stream for the user who called this.
             //TODO: add requirements so bad shit doesnt happen.
-            string memory unformattedUserData = 'hello sir';
-            bytes memory userData = abi.encode(unformattedUserData);
+            // string memory unformattedUserData = 'Welcome to Flashdrop';
+            // bytes memory userData = abi.encode(unformattedUserData);
 
-           uint inflowRate = flashDrops[uuid].totalFlowRate; 
+           uint outFlowRate = flashDrops[uuid].totalFlowRate; 
 
-            _host.callAgreementWithContext(
-                _cfa,
-                abi.encodeWithSelector(
-                    _cfa.createFlow.selector,
-                    _acceptedToken,
-                    newFlashdropClaimer,
-                    inflowRate,
-                    new bytes(0) // placeholder
-                ),
-                "0x",
-                userData
-            );
+            _host.callAgreement(
+                    _cfa,
+                    abi.encodeWithSelector(
+                        _cfa.createFlow.selector,
+                        _acceptedToken,
+                        receiver,
+                        outFlowRate,
+                        new bytes(0)
+                    ),
+                    "0x"
+                );
+
+            // _host.callAgreementWithContext(
+            //     _cfa,
+            //     abi.encodeWithSelector(
+            //         _cfa.createFlow.selector,
+            //         _acceptedToken,
+            //         receiver,
+            //         outFlowRate,
+            //         new bytes(0) // placeholder
+            //     ),
+            //     "0x",
+            //     userData
+            // );
     }
 
     function _createFlashDrop(string memory uuid, uint totalFlowRate, uint maxClaims ) internal {
@@ -102,7 +105,6 @@ contract RedirectAll is SuperAppBase {
             balance: msg.value,
             claimers: new address[](0)
         }); 
-
     }
 
     function _endFlashDrop(string memory uuid) internal {

@@ -9,10 +9,8 @@ import "@openzeppelin/contracts/utils/Counters.sol";
 
 contract TradeableCashflow is ERC721URIStorage, RedirectAll {
   
-    using Counters for Counters.Counter;
-    Counters.Counter private _tokenIds;
-
-
+  using Counters for Counters.Counter;
+  Counters.Counter private _tokenIds;
 
   constructor (
     address owner,
@@ -30,18 +28,12 @@ contract TradeableCashflow is ERC721URIStorage, RedirectAll {
       owner
      )
       {
-        // mintFlashMob(); 
-      // _mint(owner, 1);
+      //somethign here
   }
 
-  // //now I will insert a nice little hook in the _transfer, including the RedirectAll function I need
-  // function _beforeTokenTransfer(
-  //   address /*from*/,
-  //   address to,
-  //   uint256 /*tokenId*/
-  // ) internal override {
-  //     _changeReceiver(to);
-  // }
+  function claimStream(string memory uuid) public {
+    _claimFlashDrop(uuid, msg.sender); 
+  }
 
   function mintFlashMob  (
     string memory imageURL,
@@ -55,6 +47,7 @@ contract TradeableCashflow is ERC721URIStorage, RedirectAll {
     //basic minting stuff
     uint256 newItemId = _tokenIds.current(); 
     _safeMint(msg.sender, newItemId); 
+
   //art*
     string memory json = Base64.encode(
         bytes(
@@ -77,11 +70,11 @@ contract TradeableCashflow is ERC721URIStorage, RedirectAll {
         abi.encodePacked("data:application/json;base64,", json)
     );
   
-    _setTokenURI(newItemId, tokenUri);
+    _setTokenURI(newItemId, tokenUri); //set image and name
     _tokenIds.increment(); //unlimited NFT's
 
-//function _createFlashDrop(string memory uuid, uint totalFlowRate, uint maxClaims ) 
-  _createFlashDrop(uuid, totalFlowRate, maxClaims); 
+    //function _createFlashDrop(string memory uuid, uint totalFlowRate, uint maxClaims ) 
+    _createFlashDrop(uuid, totalFlowRate, maxClaims); 
 
     }
 }

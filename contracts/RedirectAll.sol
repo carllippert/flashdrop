@@ -15,7 +15,7 @@ contract RedirectAll is SuperAppBase {
     address private _receiver;
 
 
-     struct flash_drop {  
+     struct Flashdrop {  
         uint totalFlowRate;   
         uint maxClaims; 
         uint balance; 
@@ -33,7 +33,7 @@ contract RedirectAll is SuperAppBase {
 //     //storage of flowRate
 //     mapping(string => uint) private flashDropTotalFlowRate; 
 
-    mapping(string => flash_drop) public flashDrops;
+    mapping(string => Flashdrop) public flashDrops;
 
     //    //storage for people who have claimed a flashdrop Balance
     // mapping(string => address[]) private flashDropClaimers; 
@@ -96,12 +96,12 @@ contract RedirectAll is SuperAppBase {
 
     function _createFlashDrop(string memory uuid, uint totalFlowRate, uint maxClaims ) internal {
         //this user minted an nft. create the pool
-        flashDrops[uuid] = flash_drop({
-            totalFlowRate,
-            maxClaims,
-            balance msg.value, 
-            claimers: [], 
-        })
+        flashDrops[uuid] = Flashdrop({
+            totalFlowRate: totalFlowRate, 
+            maxClaims: maxClaims, 
+            balance: msg.value,
+            claimers: new address[](0)
+        }); 
 
     }
 

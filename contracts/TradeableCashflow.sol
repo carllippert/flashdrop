@@ -4,8 +4,6 @@ pragma solidity ^0.8.0;
 import {RedirectAll, ISuperToken, IConstantFlowAgreementV1, ISuperfluid} from "./RedirectAll.sol";
 
 import { Base64 } from "./Base64Encode.sol";
-
-// import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 
@@ -46,11 +44,10 @@ contract TradeableCashflow is ERC721URIStorage, RedirectAll {
   // }
 
   function mintFlashMob  (
-    // value: airdrop amount
-    // string uuid, 
     string memory imageURL,
     string memory uuid,
-    uint totalFlowRate
+    uint totalFlowRate,
+    uint maxClaims
     ) public payable {
 
   // require(msg.value >= 0.05 ether, "Not enough ETH sent: check price.");
@@ -66,7 +63,10 @@ contract TradeableCashflow is ERC721URIStorage, RedirectAll {
                     '{"name": "',
                     // We set the title of our NFT as the generated word.
                     "Flashdrop!",
-                    '", "description": "IRL Airdop!", "image": "imageURL,"}'
+                    '", "description": "IRL Airdrops powered by Superfluid!", "image": "',
+                    // We add data:image/svg+xml;base64 and then append our base64 encode our svg.
+                    imageURL,
+                    '"}'
                 )
             )
         )
@@ -80,8 +80,8 @@ contract TradeableCashflow is ERC721URIStorage, RedirectAll {
     _setTokenURI(newItemId, tokenUri);
     _tokenIds.increment(); //unlimited NFT's
 
-
-  _createFlashDrop(); 
+//function _createFlashDrop(string memory uuid, uint totalFlowRate, uint maxClaims ) 
+  _createFlashDrop(uuid, totalFlowRate, maxClaims); 
 
     }
 }

@@ -87,7 +87,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="h-screen bg-gradient-to-b from-red-200 to-red-500">
+      <main className="h-screen">
         { ! process.env.NEXT_PUBLIC_GREETER_ADDRESS ? (
             <p className="text-md">
               Please add a value to the <pre>NEXT_PUBLIC_GREETER_ADDRESS</pre> environment variable.
@@ -119,7 +119,7 @@ export default function Home() {
               <div>
               <p className='text-white'>Step 2: Mint your QR code below.</p>
             </div>
-            <div></div>
+            <div>&nbsp; </div>
             <div className="space-y-8">
                 {/* <div className="flex flex-col space-y-4">
                   <input

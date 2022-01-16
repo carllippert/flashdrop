@@ -1,8 +1,8 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { ethers } from 'ethers'
+import Avatar from '../components/Avatar'
 
 const Home: NextPage = () => {
   const [connectedWalletAddress, setConnectedWalletAddress] = useState('')
@@ -18,7 +18,7 @@ const Home: NextPage = () => {
     const signer = provider.getSigner()
     return signer.getAddress()
   }
-  
+
   useEffect(() => {
     const fetchConnectedWalletAddress = async () => {
       try {
@@ -42,17 +42,31 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="h-screen bg-gradient-to-b from-red-200 to-red-500">
-        <h1 className="title">
-          Claim your streaming <a href="https://www.superfluid.finance/home">Super Tokens</a>
-        </h1>
-        { connectedWalletAddress ? (
-          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded">Claim my token stream</button>
+      <main className="h-screen">
+        <header className="flex w-full p-5 justify-between text-grey-700">
+          {/* LEFT */}
+          <div className="flex space-x-4 items-center p-10">
+            <p className="link"> About</p>
+          </div>
+          {/* RIGHT */}
+
+
+
+        </header>
+        <Avatar />
+
+
+        {connectedWalletAddress ? (
+          <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-4 px-8 rounded space-y-3.5">Claim my token stream</button>
         ) : (
           <p className="text-md">
             Get started by connecting your MetaMask account
           </p>
-        ) }
+        )}
+
+        <h1 className="title text-white">
+          Learn about streaming <a href="https://www.superfluid.finance/home" className='link'>Super Tokens</a>
+        </h1>
       </main>
 
       <footer className="mt-20">

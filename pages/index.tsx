@@ -50,9 +50,18 @@ const Home: NextPage = () => {
 
 <p className='text-white'>Create your campaign to start airdropping tokens to your flash mob!</p>
 </div>
-<div>
-<p className='text-white'>Step 1: Connect your wallet.</p>
-</div>
+
+{connectedWalletAddress ? (
+          <p className='text-white'>Step 1: Completed. Your wallet is connected.</p>
+        ) : (
+          <p className="text-md text-white p-5">
+            Step 1: Conenct your MetaMask wallet by refreshing this page. Need MetaMask? <a target="_blank" className='link' href={`https://metamask.io/download.html`}>
+            You must install Metamask, a virtual Ethereum wallet, in your
+            browser.
+          </a>
+          </p>
+        )}
+
 <div>
 <p className='text-white'>Step 2: Mint your QR code below.</p>
 </div>

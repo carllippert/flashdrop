@@ -43,24 +43,26 @@ const Home: NextPage = () => {
       </Head>
 
       <main className="h-screen">
-        
+
         <Avatar />
 
         <div className="flex w-full p-10">
-<p className='text-white'>Tokens will stream for the duration of the ad period or until funds are exhausted.</p>
-</div>
-<div>
-<p className='text-white'>The tokens are yours as soon as they land in your wallet. Enjoy!</p>
-</div>
-<div>&nbsp; </div>
-<br></br>
+          <p className='text-white'>Tokens will stream for the duration of the ad period or until funds are exhausted.</p>
+        </div>
+        <div>
+          <p className='text-white'>The tokens are yours as soon as they land in your wallet. Enjoy!</p>
+        </div>
+        <div>&nbsp; </div>
+        <br></br>
 
-     
+
         {connectedWalletAddress ? (
           <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-4 px-8 rounded space-y-3.5">Claim my token stream</button>
         ) : (
           <p className="text-md">
-            Get started by connecting your MetaMask account
+            To get started, connect your MetaMask account by refreshing this page. Need MetaMask? <a target="_blank" className='link' href={`https://metamask.io/download.html`}>
+              You must install Metamask, a virtual Ethereum wallet, in your browser.
+            </a>
           </p>
         )}
 

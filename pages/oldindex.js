@@ -13,6 +13,13 @@ export default function Home() {
   const [connectedWalletAddress, setConnectedWalletAddressState] = useState('')
   const newGreetingInputRef = useRef();
 
+  // request metamask accounts
+  const requestAccounts = async () => {
+    await window.ethereum.request({ method: 'eth_requestAccounts' })
+  }
+
+  
+
   // If wallet is already connected...
   useEffect( () => {
     if(! hasEthereum()) {

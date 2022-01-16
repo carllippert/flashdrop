@@ -37,27 +37,28 @@ const Home: NextPage = () => {
   return (
     <div className="max-w-lg mt-36 mx-auto text-center px-4">
       <Head>
-        <title>Flashdrop | Claim Super Tokens</title>
-        <meta name="description" content="Flashdrop | Claim Super Tokens" />
+        <title>Flashdrop | Mint your QR code</title>
+        <meta name="description" content="Flashdrop | Mint your QR code" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main className="h-screen">
-        <header className="flex w-full p-5 justify-between text-grey-700">
-          {/* LEFT */}
-          <div className="flex space-x-4 items-center p-10">
-            <p className="link"> About</p>
-          </div>
-          {/* RIGHT */}
-
-
-
-        </header>
+        
         <Avatar />
+        <div className="flex w-full p-10">
 
+<p className='text-white'>Create your campaign to start airdropping tokens to your flash mob!</p>
+</div>
+<div>
+<p className='text-white'>Step 1: Connect your wallet.</p>
+</div>
+<div>
+<p className='text-white'>Step 2: Mint your QR code below.</p>
+</div>
+<div>&nbsp; </div>
 
         {connectedWalletAddress ? (
-          <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-4 px-8 rounded space-y-3.5">Claim my token stream</button>
+          <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-4 px-8 rounded space-y-3.5">Mint my QR Code</button>
         ) : (
           <p className="text-md">
             Get started by connecting your MetaMask account

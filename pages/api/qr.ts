@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import QRCode from 'qrcode'
-import uuid from 'uuid'
+import { v4 as uuid } from 'uuid'
 import createSupabase from '../../utils/supabase'
 
 const createQrCode = (data: any) =>
@@ -24,7 +24,9 @@ const addQrImageToBucket = async (image: Buffer, path: string) => {
         .upload(path, image)
     if (error) { throw error }
 
-    const { publicURL } = await supabase.storage.from('qr_codes').getPublicUrl(uploadData!.Key)
+    const { publicURL } = await supabase.storage
+        .from('flashdrop-public')
+        .getPublicUrl(uploadData!.Key)
 
     return publicURL!
 }
@@ -36,7 +38,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     }
 
     try {
-        const randomId = uuid.v4()
+        const randomId = uuid()
 
         const proto = req.headers["x-forwarded-proto"] ? "https" : "http"
         const flashdropClaimUrl = `${proto}://${req.headers.host}/claim?id=${randomId}`

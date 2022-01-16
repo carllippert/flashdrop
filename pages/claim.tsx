@@ -46,17 +46,26 @@ const Home: NextPage = () => {
       <main className="h-screen">
         
         <Avatar />
-        <StreamConnect />
 
-        {/* {connectedWalletAddress ? (
+        <div className="flex w-full p-10">
+<p className='text-white'>Tokens will stream for the duration of the ad period or until funds are exhausted.</p>
+</div>
+<div>
+<p className='text-white'>The tokens are yours as soon as they land in your wallet. Enjoy!</p>
+</div>
+<div>&nbsp; </div>
+<br></br>
+
+     
+        {connectedWalletAddress ? (
           <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-4 px-8 rounded space-y-3.5">Claim my token stream</button>
         ) : (
           <p className="text-md">
             Get started by connecting your MetaMask account
           </p>
-        )} */}
+        )}
 
-        <h1 className="title text-white">
+        <h1 className="title p-10 text-white">
           Learn about streaming <a href="https://www.superfluid.finance/home" className='link'>Super Tokens</a>
         </h1>
       </main>

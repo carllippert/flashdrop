@@ -47,21 +47,31 @@ const Home: NextPage = () => {
       <main className="h-screen">
         
         <Avatar />
-        
-        <Minter />
+        <div className="flex w-full p-10">
 
-        
-
-        {/* {connectedWalletAddress ? (
+<p className='text-white'>Create your campaign to start airdropping tokens to your flash mob!</p>
+</div>
+<div>
+<p className='text-white'>Step 1: Connect your wallet.</p>
+</div>
+<div>
+<p className='text-white'>Step 2: Mint your QR code below.</p>
+</div>
+<div>&nbsp; </div>
+<br></br>
+           
+        {connectedWalletAddress ? (
           <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-4 px-8 rounded space-y-3.5">Mint my QR Code</button>
         ) : (
           <p className="text-md">
             Get started by connecting your MetaMask account
           </p>
-        )} */}
-        <h1 className="title text-white">
+        )}
+        
+        <h1 className="title p-10 text-center text-white">
           Learn about streaming <a href="https://www.superfluid.finance/home" className='link'>Super Tokens</a>
         </h1>
+        
       </main>
 
       <footer className="mt-20">

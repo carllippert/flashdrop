@@ -3,7 +3,6 @@ import Head from 'next/head'
 import { useEffect, useState } from 'react'
 import { ethers, Wallet } from 'ethers'
 import Avatar from '../components/Avatar'
-import Minter from '../components/Minter'
 
 
 const Home: NextPage = () => {

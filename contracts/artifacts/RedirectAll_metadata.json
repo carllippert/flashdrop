@@ -1,0 +1,503 @@
+{
+	"compiler": {
+		"version": "0.8.0+commit.c7dfd78e"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "contract ISuperfluid",
+						"name": "host",
+						"type": "address"
+					},
+					{
+						"internalType": "contract IConstantFlowAgreementV1",
+						"name": "cfa",
+						"type": "address"
+					},
+					{
+						"internalType": "contract ISuperToken",
+						"name": "acceptedToken",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "receiver",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "receiver",
+						"type": "address"
+					}
+				],
+				"name": "ReceiverChanged",
+				"type": "event"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "contract ISuperToken",
+						"name": "_superToken",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_agreementClass",
+						"type": "address"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "bytes",
+						"name": "",
+						"type": "bytes"
+					},
+					{
+						"internalType": "bytes",
+						"name": "",
+						"type": "bytes"
+					},
+					{
+						"internalType": "bytes",
+						"name": "_ctx",
+						"type": "bytes"
+					}
+				],
+				"name": "afterAgreementCreated",
+				"outputs": [
+					{
+						"internalType": "bytes",
+						"name": "newCtx",
+						"type": "bytes"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "contract ISuperToken",
+						"name": "_superToken",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_agreementClass",
+						"type": "address"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "bytes",
+						"name": "",
+						"type": "bytes"
+					},
+					{
+						"internalType": "bytes",
+						"name": "",
+						"type": "bytes"
+					},
+					{
+						"internalType": "bytes",
+						"name": "_ctx",
+						"type": "bytes"
+					}
+				],
+				"name": "afterAgreementTerminated",
+				"outputs": [
+					{
+						"internalType": "bytes",
+						"name": "newCtx",
+						"type": "bytes"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "contract ISuperToken",
+						"name": "_superToken",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_agreementClass",
+						"type": "address"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "bytes",
+						"name": "agreementData",
+						"type": "bytes"
+					},
+					{
+						"internalType": "bytes",
+						"name": "",
+						"type": "bytes"
+					},
+					{
+						"internalType": "bytes",
+						"name": "_ctx",
+						"type": "bytes"
+					}
+				],
+				"name": "afterAgreementUpdated",
+				"outputs": [
+					{
+						"internalType": "bytes",
+						"name": "newCtx",
+						"type": "bytes"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "contract ISuperToken",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "bytes",
+						"name": "",
+						"type": "bytes"
+					},
+					{
+						"internalType": "bytes",
+						"name": "",
+						"type": "bytes"
+					}
+				],
+				"name": "beforeAgreementCreated",
+				"outputs": [
+					{
+						"internalType": "bytes",
+						"name": "",
+						"type": "bytes"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "contract ISuperToken",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "bytes",
+						"name": "",
+						"type": "bytes"
+					},
+					{
+						"internalType": "bytes",
+						"name": "",
+						"type": "bytes"
+					}
+				],
+				"name": "beforeAgreementTerminated",
+				"outputs": [
+					{
+						"internalType": "bytes",
+						"name": "",
+						"type": "bytes"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "contract ISuperToken",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "bytes",
+						"name": "",
+						"type": "bytes"
+					},
+					{
+						"internalType": "bytes",
+						"name": "",
+						"type": "bytes"
+					}
+				],
+				"name": "beforeAgreementUpdated",
+				"outputs": [
+					{
+						"internalType": "bytes",
+						"name": "",
+						"type": "bytes"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "currentReceiver",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "startTime",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "receiver",
+						"type": "address"
+					},
+					{
+						"internalType": "int96",
+						"name": "flowRate",
+						"type": "int96"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"name": "flashDrops",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "totalFlowRate",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "maxClaims",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "balance",
+						"type": "uint256"
+					},
+					{
+						"internalType": "contract IERC20",
+						"name": "superToken",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/RedirectAll.sol": "RedirectAll"
+		},
+		"evmVersion": "istanbul",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"@openzeppelin/contracts/token/ERC20/IERC20.sol": {
+			"keccak256": "0x61437cb513a887a1bbad006e7b1c8b414478427d33de47c5600af3c748f108da",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://2c3d0973630ed74f2b5ce3944677a885dc70ec32fc83b35f55045a10224da32b",
+				"dweb:/ipfs/QmbefZ5RoEZKNHXCALfh683PnaNYzKPcKMFjyY1DVAgq8A"
+			]
+		},
+		"@openzeppelin/contracts/token/ERC777/IERC777.sol": {
+			"keccak256": "0xe4e0b7e3f0265ffaa565d26acd2d45f2633f19127ed625e5a05a9f201a87a667",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://1762b5bc15a009b5f092ccf547b81e0827c8705884f18e0623e497658514a7ed",
+				"dweb:/ipfs/QmTtmVQYuynan3j2uVjdjjRJS1mr7LPRgxSZNnfqC7oxkz"
+			]
+		},
+		"contracts/RedirectAll.sol": {
+			"keccak256": "0xcac97b1a30abdd7d322a17a6b3e3605cf5296cf1d484eac0063dbad5498dddb2",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://4ec3de5a9aa8ce8e5f58f940cdc5c3c6e694bb1661dbfb516c286d43e1a1c5d1",
+				"dweb:/ipfs/Qmeu7QSMtHvt3YixopErZa3B6rBrc4gbq7M5Ej3qrbbmAa"
+			]
+		},
+		"https://github.com/superfluid-finance/protocol-monorepo/packages/ethereum-contracts/contracts/apps/SuperAppBase.sol": {
+			"keccak256": "0x76db1497b95aa8af5c6b6d64222c5894c6f5e5662844b7287f0134cbbd0bb5c5",
+			"license": "AGPLv3",
+			"urls": [
+				"bzz-raw://d4a6716fa1bfbdc04a2b2481eb742691ac29b588118972cf81fdea8519a19ece",
+				"dweb:/ipfs/QmRpAuUqUdyihVYKBAcGqxeVEbF14URT9oQJYAc4wdkSX6"
+			]
+		},
+		"https://github.com/superfluid-finance/protocol-monorepo/packages/ethereum-contracts/contracts/interfaces/agreements/IConstantFlowAgreementV1.sol": {
+			"keccak256": "0xc47783262893c4600d412987ea47558b3b79336407462e6dff2117c04304177f",
+			"license": "AGPLv3",
+			"urls": [
+				"bzz-raw://ad36bacfb037ac85431f8a48f0c5a8d011d506a32c99ee3f3d0df23183dff024",
+				"dweb:/ipfs/QmZqEon9aSVLcJ6QdB2oVA9SfhCz4E1h7q2CbRSxhvwp9x"
+			]
+		},
+		"https://github.com/superfluid-finance/protocol-monorepo/packages/ethereum-contracts/contracts/interfaces/superfluid/Definitions.sol": {
+			"keccak256": "0x430cf617b2acfd3b5ee9b245b708faf9ded9a2b3168d61098db1016af14533ec",
+			"license": "AGPLv3",
+			"urls": [
+				"bzz-raw://1c8fa6564853a50ef4d7015e719f0c7fbca9f974589f5eeca8cd70913cd21a0a",
+				"dweb:/ipfs/QmVesnNgRdJK25qKyrupuRxFV5xqNT2D6tDKXVHDJbJYAe"
+			]
+		},
+		"https://github.com/superfluid-finance/protocol-monorepo/packages/ethereum-contracts/contracts/interfaces/superfluid/ISuperAgreement.sol": {
+			"keccak256": "0xcf8a33fadd5db47562156a11098623246efd1b46a2c3d28269767bcbb324fd66",
+			"license": "AGPLv3",
+			"urls": [
+				"bzz-raw://5c0273b4a136874ca4ad1b3f66b312adfa8e8ed48b301e4e979081d4923bb55f",
+				"dweb:/ipfs/QmQvK9ZQggymJAftai2aA89EfQY2hX3MSpejNkr6kNf45m"
+			]
+		},
+		"https://github.com/superfluid-finance/protocol-monorepo/packages/ethereum-contracts/contracts/interfaces/superfluid/ISuperApp.sol": {
+			"keccak256": "0xca93702505ec3c8244227e372687d9bdbc9d368fa07723d310ab9550501abb2a",
+			"license": "AGPLv3",
+			"urls": [
+				"bzz-raw://3514c2c72fc866064227ea28fceea9dec4ca27cdbda2cff546b59f6b899cee4d",
+				"dweb:/ipfs/QmdpFCRDm8An2U6TCTUK3Zopp8wVS44mzh2YjVvtruE3dZ"
+			]
+		},
+		"https://github.com/superfluid-finance/protocol-monorepo/packages/ethereum-contracts/contracts/interfaces/superfluid/ISuperToken.sol": {
+			"keccak256": "0xba355f7d7d5d32ca345bcdb355759ba598a911ff07227ff80012a5e0bf660fb1",
+			"license": "AGPLv3",
+			"urls": [
+				"bzz-raw://72c2669590a012587b892f0bbb166079ffb9e4c2044511b45eb6b34489f83b30",
+				"dweb:/ipfs/QmQckdZ7tbboxPpXSt8irWo98KBcZRT5xNPuGf7yuZxZw2"
+			]
+		},
+		"https://github.com/superfluid-finance/protocol-monorepo/packages/ethereum-contracts/contracts/interfaces/superfluid/ISuperTokenFactory.sol": {
+			"keccak256": "0x7dc514c6c9eda681ed8ad66ccfb68dc22764b6c429ab55fddbba28b6b148621b",
+			"license": "AGPLv3",
+			"urls": [
+				"bzz-raw://bc4b3b35bb0ddd9323afa1f25468eb706e5f7eccce6ff9beec9657aeea8bec33",
+				"dweb:/ipfs/QmSLKq8JYWavnjDokYoe1cUERbvWFfiBWBJ2zDCMVyycsM"
+			]
+		},
+		"https://github.com/superfluid-finance/protocol-monorepo/packages/ethereum-contracts/contracts/interfaces/superfluid/ISuperfluid.sol": {
+			"keccak256": "0x987a883e8acd87e07eb00ebb1c882d294c7a0af2e5a8cb234270f83f4168438f",
+			"license": "AGPLv3",
+			"urls": [
+				"bzz-raw://87631a2a511fcfd20787d0bb633d37f3a810bd50c58502c996106b97f2795272",
+				"dweb:/ipfs/QmeR8yfLL41en8GjszYRc8Cw9QoEmRQ6j3hCi8JRsym3vZ"
+			]
+		},
+		"https://github.com/superfluid-finance/protocol-monorepo/packages/ethereum-contracts/contracts/interfaces/superfluid/ISuperfluidGovernance.sol": {
+			"keccak256": "0x2ac401c7fb012ef43d8becad0196bcd41ac9ad33778a7a5e4809a1740a646e63",
+			"license": "AGPLv3",
+			"urls": [
+				"bzz-raw://a04710e0e2a4d0183d2760b1ef73e970e4070eaeee3dfefe5ba4bed61dd45ada",
+				"dweb:/ipfs/QmYCxDFAWmrCTzioikvbeJtHByWvyxT9nARBuaVoYmopPo"
+			]
+		},
+		"https://github.com/superfluid-finance/protocol-monorepo/packages/ethereum-contracts/contracts/interfaces/superfluid/ISuperfluidToken.sol": {
+			"keccak256": "0xc658bc41894eecb8f64de68b92011c66b9ae2ec4d0373321c3f558a527f8ecc4",
+			"license": "AGPLv3",
+			"urls": [
+				"bzz-raw://5b107e8e8a6a87113cfb238b7a79efaf755af66188599aa71bc1d58799098894",
+				"dweb:/ipfs/Qme1TxqHKLVsKwbrcjA7632VfUkDvbCBzZQyWGm8sRgwRk"
+			]
+		},
+		"https://github.com/superfluid-finance/protocol-monorepo/packages/ethereum-contracts/contracts/interfaces/tokens/ERC20WithTokenInfo.sol": {
+			"keccak256": "0x808d3a486826e7f119671174a77896c6e23578e691625350dbb3e9f74a0d5137",
+			"license": "AGPLv3",
+			"urls": [
+				"bzz-raw://06a7a1bc2ed6888c7080a8e1fb676b7f3972b3f22620c771a41ca3a0ee78b968",
+				"dweb:/ipfs/QmW7qpRwv2vEtCtENoP4BUkK4yRBbiKUZbPbyXNbPthiLQ"
+			]
+		},
+		"https://github.com/superfluid-finance/protocol-monorepo/packages/ethereum-contracts/contracts/interfaces/tokens/TokenInfo.sol": {
+			"keccak256": "0x4dee21b8f64edbfe811a300d31f529b5367d1186d69b8b2b8dc3373be7a108b0",
+			"license": "AGPLv3",
+			"urls": [
+				"bzz-raw://67edf7ddbd90cd7871dc3c92202d4a749d3be0065174fd0f5b89b18edac9d8d1",
+				"dweb:/ipfs/QmNc58Ep6sYkSybGVAgmkeCjHFdBL2m1sGJGUgR99xKqeh"
+			]
+		}
+	},
+	"version": 1
+}

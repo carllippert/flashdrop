@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .link {
+        @apply hover:underline cursor-pointer;
+    }
+}
+
+@layer base {
+    body {
+        @apply bg-gradient-to-b from-red-200 to-red-500 text-gray-300;
+    }
+}

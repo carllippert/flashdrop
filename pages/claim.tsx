@@ -5,9 +5,8 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { ethers } from 'ethers'
 import { hasMetamask } from '../utils/ethereum'
-import { getTokenId } from '../utils/db'
-import styles from '../styles/Home.module.css'
-import Flashdrop from '../src/artifacts/contracts/Flashdrop.sol/Flashdrop.json'
+import Avatar from '../components/Avatar'
+import Flashdrop from '../contracts/artifacts/TradeableCashflow.json'
 
 const Claim: NextPage = () => {
   const [connectedWalletAddress, setConnectedWalletAddress] = useState('')
@@ -45,7 +44,7 @@ const Claim: NextPage = () => {
   }
 
   // Call smart contract, set new value
-  const claimStream = async (flashdropId: string, referrerAddress?: string) => {
+  const claimStream = async (flashdropId: string) => {
     if (!hasMetamask()) {
       setConnectedWalletAddress('')
       return
@@ -57,7 +56,7 @@ const Claim: NextPage = () => {
     const signer = provider.getSigner()
     const contract = new ethers.Contract(process.env.NEXT_PUBLIC_FLASHDROP_ADDRESS!, Flashdrop.abi, signer)
     
-    const transaction = await contract.claimStream(flashdropId, referrerAddress)
+    const transaction = await contract.claimStream(flashdropId)
     await transaction.wait()
 
     setHasClaimed(true)
@@ -77,8 +76,7 @@ const Claim: NextPage = () => {
         return
       }
 
-      const tokenId = await getTokenId(uuid)
-      setFlashdropNftId(tokenId)
+      setFlashdropNftId(uuid)
     }
 
     fetchTokenId()
@@ -92,43 +90,56 @@ const Claim: NextPage = () => {
   })
 
   return (
-    <div className={styles.container}>
+    <div className="max-w-lg mt-36 mx-auto text-center px-4">
       <Head>
         <title>Flashdrop | Claim Super Tokens</title>
         <meta name="description" content="Flashdrop | Claim Super Tokens" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon-16x16.png" />
       </Head>
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Claim your streaming <a href="https://www.superfluid.finance/home">Super Tokens</a>
-        </h1>
-        { connectedWalletAddress ? (
-          hasClaimed ? (
-            <button onClick={() => claimStream(flashdropNftId, referrerAddress)}>Claim my token stream</button>
-          ) : (
-            <p className={styles.description}>
-              You have claimed your stream! Visit <a href="https://app.superfluid.finance">https://app.superfluid.finance</a> to see your streams in real time
-            </p>
-          )
+      <main className="h-screen">
+
+        <Avatar />
+
+        <div className="flex w-full p-10">
+          <p className='text-white'>Tokens will stream for the duration of the ad period or until funds are exhausted.</p>
+        </div>
+        <div>
+          <p className='text-white'>The tokens are yours as soon as they land in your wallet. Enjoy!</p>
+        </div>
+        <div>&nbsp; </div>
+        <br></br>
+
+
+        {connectedWalletAddress ? (
+          <button 
+            className="bg-red-500 hover:bg-red-700 text-white font-bold py-4 px-8 rounded space-y-3.5" 
+            onClick={() => claimStream(flashdropNftId)}
+          >
+            Claim my token stream
+          </button>
         ) : (
-          <p className={styles.description}>
-            Get started by connecting your MetaMask account
+          <p className="text-md">
+            To get started, connect your MetaMask account by refreshing this page. Need MetaMask? <a target="_blank" className='link' href={`https://metamask.io/download.html`}>
+              You must install Metamask, a virtual Ethereum wallet, in your browser.
+            </a>
           </p>
-        ) }
+        )}
+
+        <h1 className="title p-10 text-white">
+          Learn about streaming <a href="https://www.superfluid.finance/home" className='link'>Super Tokens</a>
+        </h1>
       </main>
 
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+      <footer className="mt-20">
+        {/* <a
+          href="https://github.com/tomhirst/solidity-nextjs-starter/blob/main/README.md"
           target="_blank"
           rel="noopener noreferrer"
+          className="text-blue-600 hover:text-blue-700"
         >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
+          Read the docs
+        </a> */}
       </footer>
     </div>
   )

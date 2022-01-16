@@ -2,7 +2,9 @@ import Head from 'next/head'
 import { useEffect, useState, useRef } from 'react'
 import { ethers } from 'ethers'
 import { hasMetamask } from '../utils/ethereum'
-// import Greeter from '../src/artifacts/contracts/Greeter.sol/Greeter.json'
+import Avatar from '../components/Avatar'
+
+const Greeter = { abi: null } // TODO: replace Greeter stuff with Flashdrop
 
 export default function Home() {
   const [greeting, setGreetingState] = useState('')
@@ -10,6 +12,13 @@ export default function Home() {
   const [newGreetingMessage, setNewGreetingMessageState] = useState('')
   const [connectedWalletAddress, setConnectedWalletAddressState] = useState('')
   const newGreetingInputRef = useRef();
+
+  // request metamask accounts
+  const requestAccounts = async () => {
+    await window.ethereum.request({ method: 'eth_requestAccounts' })
+  }
+
+  
 
   // If wallet is already connected...
   useEffect( () => {
@@ -76,25 +85,50 @@ export default function Home() {
   }
 
   return (
+    
+
     <div className="max-w-lg mt-36 mx-auto text-center px-4">
       <Head>
-        <title>Solidity Next.js Starter</title>
-        <meta name="description" content="Interact with a simple smart contract from the client-side." />
+        <title>FlashDrop</title>
+        <meta name="description" content="Fund your flash mob." />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="space-y-8">
+      <main className="h-screen">
         { ! process.env.NEXT_PUBLIC_GREETER_ADDRESS ? (
             <p className="text-md">
               Please add a value to the <pre>NEXT_PUBLIC_GREETER_ADDRESS</pre> environment variable.
             </p>
         ) : (
           <>
-            <h1 className="text-4xl font-semibold mb-8">
-              Solidity Next.js Starter
-            </h1>
+           <header className="flex w-full p-5 justify-between text-grey-700">
+            {/* LEFT */}
+            <div className="flex space-x-4 items-center p-10">
+            <p className="link"> About</p>
+            </div>
+            {/* RIGHT */}
+            <div className="flex space-x-4 items-center p-10">
+            <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-4 px-8 rounded w-full">
+  Connect Wallet
+</button>
+            </div>
+
+
+           </header>
+            <Avatar />
+            <div className="flex w-full p-10">
+
+              <p className='text-white'>Create your campaign to start airdropping tokens to your flash mob!</p>
+              </div>
+              <div>
+              <p className='text-white'>Step 1: Connect your wallet.</p>
+            </div>
+              <div>
+              <p className='text-white'>Step 2: Mint your QR code below.</p>
+            </div>
+            <div>&nbsp; </div>
             <div className="space-y-8">
-                <div className="flex flex-col space-y-4">
+                {/* <div className="flex flex-col space-y-4">
                   <input
                     className="border p-4 w-100 text-center"
                     placeholder="A fetched greeting will show here"
@@ -107,8 +141,8 @@ export default function Home() {
                     >
                       Fetch greeting from the blockchain
                     </button>
-                </div>
-                <div className="space-y-8">
+                </div> */}
+                {/* <div className="space-y-8">
                   <div className="flex flex-col space-y-4">
                     <input
                       className="border p-4 text-center"
@@ -126,8 +160,11 @@ export default function Home() {
                       { newGreetingMessage && <span className="text-sm text-gray-500 italic">{newGreetingMessage}</span> }
                     </div>
                   </div>
-                </div>
+                </div> */}
                 <div className="h-4">
+                <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-4 px-8 rounded">
+  Mint my QR Code
+</button>
                   { connectedWalletAddress && <p className="text-md">{connectedWalletAddress}</p> }
                 </div>
             </div>

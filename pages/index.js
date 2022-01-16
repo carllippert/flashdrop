@@ -3,7 +3,8 @@ import { useEffect, useState, useRef } from 'react'
 import { ethers } from 'ethers'
 import { hasEthereum } from '../utils/ethereum'
 import Avatar from '../components/Avatar'
-import Greeter from '../src/artifacts/contracts/Greeter.sol/Greeter.json'
+
+const Greeter = { abi: null } // TODO: replace Greeter stuff with Flashdrop
 
 export default function Home() {
   const [greeting, setGreetingState] = useState('')

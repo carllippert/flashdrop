@@ -3,7 +3,6 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { ethers } from 'ethers'
-import styles from '../styles/Home.module.css'
 
 const Home: NextPage = () => {
   const [connectedWalletAddress, setConnectedWalletAddress] = useState('')
@@ -36,36 +35,34 @@ const Home: NextPage = () => {
   })
 
   return (
-    <div className={styles.container}>
+    <div className="max-w-lg mt-36 mx-auto text-center px-4">
       <Head>
         <title>Flashdrop | Claim Super Tokens</title>
         <meta name="description" content="Flashdrop | Claim Super Tokens" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
+      <main className="h-screen bg-gradient-to-b from-red-200 to-red-500">
+        <h1 className="title">
           Claim your streaming <a href="https://www.superfluid.finance/home">Super Tokens</a>
         </h1>
         { connectedWalletAddress ? (
-          <button>Claim my token stream</button>
+          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded">Claim my token stream</button>
         ) : (
-          <p className={styles.description}>
+          <p className="text-md">
             Get started by connecting your MetaMask account
           </p>
         ) }
       </main>
 
-      <footer className={styles.footer}>
+      <footer className="mt-20">
         <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+          href="https://github.com/tomhirst/solidity-nextjs-starter/blob/main/README.md"
           target="_blank"
           rel="noopener noreferrer"
+          className="text-blue-600 hover:text-blue-700"
         >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
+          Read the docs
         </a>
       </footer>
     </div>

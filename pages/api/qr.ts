@@ -1,5 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import QRCode from 'qrcode'
+import uuid from 'uuid'
+import createSupabase from '../../utils/supabase'
 
 const createQrCode = (data: any) =>
     QRCode.toBuffer(
@@ -15,26 +17,34 @@ const createQrCode = (data: any) =>
         },
     )
 
+const addQrImageToBucket = async (image: Buffer, path: string) => {
+    const supabase = createSupabase()
+    const { data: uploadData, error } = await supabase.storage
+        .from('flashdrop-public')
+        .upload(path, image)
+    if (error) { throw error }
+
+    const { publicURL } = await supabase.storage.from('qr_codes').getPublicUrl(uploadData!.Key)
+
+    return publicURL!
+}
+
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-    if (req.method !== 'GET') { 
+    if (req.method !== 'POST') { 
         res.status(405).end()
         return
     }
 
-    const randomId = Array.isArray(req.query.randomId) ? req.query.randomId[0] : req.query.randomId
-    if (!randomId) {
-        res.status(400).json({ errorMessage: 'Must provide \'randomId\' in the query parameters of your request' })
-        return
-    }
-
-    const proto = req.headers["x-forwarded-proto"] ? "https" : "http"
-    const flashdropClaimUrl = `${proto}://${req.headers.host}/claim?id=${randomId}`
-
     try {
-        const qrBuffer = await createQrCode(flashdropClaimUrl)
+        const randomId = uuid.v4()
 
-        res.setHeader('Content-Type', 'image/png')
-        res.status(200).send(qrBuffer)
+        const proto = req.headers["x-forwarded-proto"] ? "https" : "http"
+        const flashdropClaimUrl = `${proto}://${req.headers.host}/claim?id=${randomId}`
+
+        const qrBuffer = await createQrCode(flashdropClaimUrl)
+        const qrCodeUrl = await addQrImageToBucket(qrBuffer, `${randomId}.png`)
+        
+        res.status(200).json({ qrCodeUrl })
     }
     catch(error) {
         res.status(500).json({ error })

@@ -47,20 +47,7 @@ const Home: NextPage = () => {
       <main className="h-screen">
         
         <Avatar />
-        <WalletConnect />
-
-        <div className="flex w-full p-10">
-
-<p className='text-white'>Create your campaign to start airdropping tokens to your flash mob!</p>
-</div>
-<div>
-<p className='text-white'>Step 1: Connect your wallet.</p>
-</div>
-<div>
-<p className='text-white'>Step 2: Mint your QR code below.</p>
-</div>
-<div>&nbsp; </div>
-
+        
         <Minter />
 
         

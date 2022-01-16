@@ -24,9 +24,11 @@ const addQrImageToBucket = async (image: Buffer, path: string) => {
         .upload(path, image)
     if (error) { throw error }
 
+    const supabaseFileKey = uploadData!.Key.replace('flashdrop-public/', '')
+
     const { publicURL } = await supabase.storage
         .from('flashdrop-public')
-        .getPublicUrl(uploadData!.Key)
+        .getPublicUrl(supabaseFileKey)
 
     return publicURL!
 }

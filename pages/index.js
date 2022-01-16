@@ -77,6 +77,8 @@ export default function Home() {
   }
 
   return (
+    
+
     <div className="max-w-lg mt-36 mx-auto text-center px-4">
       <Head>
         <title>FlashDrop</title>
@@ -84,17 +86,41 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="space-y-8">
+      <main className="h-screen bg-gradient-to-b from-red-200 to-red-500">
         { ! process.env.NEXT_PUBLIC_GREETER_ADDRESS ? (
             <p className="text-md">
               Please add a value to the <pre>NEXT_PUBLIC_GREETER_ADDRESS</pre> environment variable.
             </p>
         ) : (
           <>
-           
+           <header className="flex w-full p-5 justify-between text-grey-700">
+            {/* LEFT */}
+            <div className="flex space-x-4 items-center p-10">
+            <p className="link"> About</p>
+            </div>
+            {/* RIGHT */}
+            <div className="flex space-x-4 items-center p-10">
+            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-4 px-8 rounded w-full">
+  Connect Wallet
+</button>
+            </div>
+
+
+           </header>
             <Avatar />
+            <div className="flex w-full p-10">
+
+              <p className='text-white'>Create your campaign to start airdropping tokens to your flash mob!</p>
+              </div>
+              <div>
+              <p className='text-white'>Step 1: Connect your wallet.</p>
+            </div>
+              <div>
+              <p className='text-white'>Step 2: Mint your QR code below.</p>
+            </div>
+            <div></div>
             <div className="space-y-8">
-                <div className="flex flex-col space-y-4">
+                {/* <div className="flex flex-col space-y-4">
                   <input
                     className="border p-4 w-100 text-center"
                     placeholder="A fetched greeting will show here"
@@ -107,8 +133,8 @@ export default function Home() {
                     >
                       Fetch greeting from the blockchain
                     </button>
-                </div>
-                <div className="space-y-8">
+                </div> */}
+                {/* <div className="space-y-8">
                   <div className="flex flex-col space-y-4">
                     <input
                       className="border p-4 text-center"
@@ -126,8 +152,11 @@ export default function Home() {
                       { newGreetingMessage && <span className="text-sm text-gray-500 italic">{newGreetingMessage}</span> }
                     </div>
                   </div>
-                </div>
+                </div> */}
                 <div className="h-4">
+                <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-4 px-8 rounded">
+  Mint my QR Code
+</button>
                   { connectedWalletAddress && <p className="text-md">{connectedWalletAddress}</p> }
                 </div>
             </div>

@@ -73,7 +73,7 @@ const Home: NextPage = () => {
           <p className='text-white'>Step 1: Completed. Your wallet is connected.</p>
         ) : (
           <p className="text-md text-white p-5">
-            Step 1: Connect your MetaMask wallet by refreshing this page. Need MetaMask? <a target="_blank" className='link' href={`https://metamask.io/download.html`}>
+            Step 1: Connect your MetaMask wallet by refreshing this page. Need MetaMask? <a target="_blank" rel="noreferrer" className='link' href={`https://metamask.io/download.html`}>
               You must install Metamask, a virtual Ethereum wallet, in your
               browser.
             </a>

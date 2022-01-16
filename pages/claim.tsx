@@ -120,7 +120,7 @@ const Claim: NextPage = () => {
           </button>
         ) : (
           <p className="text-md">
-            To get started, connect your MetaMask account by refreshing this page. Need MetaMask? <a target="_blank" className='link' href={`https://metamask.io/download.html`}>
+            To get started, connect your MetaMask account by refreshing this page. Need MetaMask? <a target="_blank" rel="noreferrer" className='link' href={`https://metamask.io/download.html`}>
               You must install Metamask, a virtual Ethereum wallet, in your browser.
             </a>
           </p>

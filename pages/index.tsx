@@ -41,7 +41,7 @@ const Home: NextPage = () => {
       <Head>
         <title>Flashdrop | Mint your QR code</title>
         <meta name="description" content="Flashdrop | Mint your QR code" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon-16x16.png" />
       </Head>
 
       <main className="h-screen">

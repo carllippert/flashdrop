@@ -40,7 +40,7 @@ const Home: NextPage = () => {
       <Head>
         <title>Flashdrop | Claim Super Tokens</title>
         <meta name="description" content="Flashdrop | Claim Super Tokens" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon-16x16.png" />
       </Head>
 
       <main className="h-screen">

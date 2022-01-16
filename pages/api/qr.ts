@@ -48,7 +48,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         const qrBuffer = await createQrCode(flashdropClaimUrl)
         const qrCodeUrl = await addQrImageToBucket(qrBuffer, `${randomId}.png`)
         
-        res.status(200).json({ qrCodeUrl })
+        res.status(200).json({ qrCodeUrl, randomId })
     }
     catch(error) {
         res.status(500).json({ error })

@@ -100,7 +100,7 @@ export default function Home() {
             </div>
             {/* RIGHT */}
             <div className="flex space-x-4 items-center p-10">
-            <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-4 px-8 rounded w-full">
+            <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-4 px-8 rounded w-full">
   Connect Wallet
 </button>
             </div>
@@ -154,7 +154,7 @@ export default function Home() {
                   </div>
                 </div> */}
                 <div className="h-4">
-                <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-4 px-8 rounded">
+                <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-4 px-8 rounded">
   Mint my QR Code
 </button>
                   { connectedWalletAddress && <p className="text-md">{connectedWalletAddress}</p> }

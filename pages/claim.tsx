@@ -54,7 +54,7 @@ const Claim: NextPage = () => {
 
     const provider = new ethers.providers.Web3Provider(window.ethereum)
     const signer = provider.getSigner()
-    const contract = new ethers.Contract(process.env.NEXT_PUBLIC_FLASHDROP_ADDRESS!, Flashdrop.abi, signer)
+    const contract = new ethers.Contract("0xF2d68898557cCb2Cf4C10c3Ef2B034b2a69DAD00", Flashdrop.abi, signer)
     
     const transaction = await contract.claimStream(flashdropId)
     await transaction.wait()

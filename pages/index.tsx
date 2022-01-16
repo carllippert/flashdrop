@@ -1,8 +1,10 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
-import { ethers } from 'ethers'
+import { ethers, Wallet } from 'ethers'
 import Avatar from '../components/Avatar'
+import Minter from '../components/Minter'
+import WalletConnect from '../components/WalletConnect'
 
 const Home: NextPage = () => {
   const [connectedWalletAddress, setConnectedWalletAddress] = useState('')
@@ -45,6 +47,8 @@ const Home: NextPage = () => {
       <main className="h-screen">
         
         <Avatar />
+        <WalletConnect />
+
         <div className="flex w-full p-10">
 
 <p className='text-white'>Create your campaign to start airdropping tokens to your flash mob!</p>
@@ -57,14 +61,18 @@ const Home: NextPage = () => {
 </div>
 <div>&nbsp; </div>
 
-        {connectedWalletAddress ? (
+        <Minter />
+
+        
+
+        {/* {connectedWalletAddress ? (
           <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-4 px-8 rounded space-y-3.5">Mint my QR Code</button>
         ) : (
           <p className="text-md">
             Get started by connecting your MetaMask account
           </p>
-        )}
-
+        )} */}
+<div></div>
         <h1 className="title text-white">
           Learn about streaming <a href="https://www.superfluid.finance/home" className='link'>Super Tokens</a>
         </h1>

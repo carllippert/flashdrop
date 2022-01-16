@@ -3,7 +3,6 @@ import Head from 'next/head'
 import { useEffect, useState } from 'react'
 import { ethers } from 'ethers'
 import Avatar from '../components/Avatar'
-import StreamConnect from '../components/StreamConnect'
 
 const Home: NextPage = () => {
   const [connectedWalletAddress, setConnectedWalletAddress] = useState('')

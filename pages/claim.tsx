@@ -44,16 +44,7 @@ const Home: NextPage = () => {
       </Head>
 
       <main className="h-screen">
-        <header className="flex w-full p-5 justify-between text-grey-700">
-          {/* LEFT */}
-          <div className="flex space-x-4 items-center p-10">
-            <p className="link"> About</p>
-          </div>
-          {/* RIGHT */}
-
-
-
-        </header>
+        
         <Avatar />
         <StreamConnect />
 

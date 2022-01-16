@@ -7,6 +7,7 @@ import Flashdrop from '../contracts/artifacts/TradeableCashflow.json'
 
 const Home: NextPage = () => {
   const [connectedWalletAddress, setConnectedWalletAddress] = useState('')
+  const [mintLoading, setMintLoading] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
 
   // request metamask accounts
@@ -20,21 +21,38 @@ const Home: NextPage = () => {
     return signer.getAddress()
   }
 
-  const addFunding = async (amount:number) => {
-    const provider = new ethers.providers.Web3Provider(window.ethereum)
-    const signer = provider.getSigner()
-    const token = new ethers.Contract("0xF2d68898557cCb2Cf4C10c3Ef2B034b2a69DAD00", Flashdrop.abi, signer)
-    const contract = new ethers.Contract("0xd63a778287832Eb7F8c257dD531186FDAeae2C1D", Flashdrop.abi, signer)
+  const fetchQrCode = async () => {
+    const response = await fetch('/api/qr', { method: 'POST' })
+    return response.json()
+  }
 
-    // console.log(token);
-    await token.approve("0xd63a778287832Eb7F8c257dD531186FDAeae2C1D", amount)
-    await contract.mintFlashDrop("0xF2d68898557cCb2Cf4C10c3Ef2B034b2a69DAD00",amount/10,
-        "https://ctinsvafusekcbpznpfr.supabase.in/storage/v1/object/public/flashdrop-public/19804ff5-70d2-4b5a-a2cf-74ace32fe64e.png",
-        "19804ff5-70d2-4b5a-a2cf-74ace32fe64e", 100, 10)
-    // .send({ from: connectedWalletAddress })
-      // .then(
-      //   await token.transferFrom(senderAccount, myContract, amount).send({ from: this.state.account })
-      // )
+  const mint = async (amount: number) => {
+    setMintLoading(true)
+
+    try {
+      const provider = new ethers.providers.Web3Provider(window.ethereum)
+      const signer = provider.getSigner()
+      const token = new ethers.Contract("0xF2d68898557cCb2Cf4C10c3Ef2B034b2a69DAD00", Flashdrop.abi, signer)
+      const contract = new ethers.Contract("0xd63a778287832Eb7F8c257dD531186FDAeae2C1D", Flashdrop.abi, signer)
+
+      await token.approve("0xd63a778287832Eb7F8c257dD531186FDAeae2C1D", amount)
+
+      const { qrCodeUrl, randomId } = await fetchQrCode()
+
+      await contract.mintFlashDrop(
+        "0xF2d68898557cCb2Cf4C10c3Ef2B034b2a69DAD00",
+        amount/10,
+        qrCodeUrl,
+        randomId, 
+        100,
+        10,
+      )
+    }
+    catch(err) {
+      console.error(err)
+    }
+
+    setMintLoading(false)
   }
 
 
@@ -87,7 +105,13 @@ const Home: NextPage = () => {
         <br></br>
 
         {connectedWalletAddress ? (
-          <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-4 px-8 rounded space-y-3.5" onClick={() => addFunding(10000000000)}>Mint my QR Code</button>
+          <button
+            className={`${mintLoading ? 'bg-gray-500' : 'bg-red-500 hover:bg-red-700'} text-white font-bold py-4 px-8 rounded space-y-3.5`}
+            onClick={() => mint(10000000000)}
+            disabled={mintLoading}
+          >
+            Mint my QR Code
+          </button>
         ) : (
           <p className="text-md">
             Get started by connecting your MetaMask account

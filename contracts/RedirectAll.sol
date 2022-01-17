@@ -2,7 +2,7 @@
 pragma solidity ^0.8.0;
 pragma abicoder v2;
 
-import {ISuperfluid, ISuperToken, ISuperApp, ISuperAgreement, SuperAppDefinitions} from "https://github.com/superfluid-finance/protocol-monorepo/packages/ethereum-contracts/contracts/interfaces/superfluid/ISuperfluid.sol";
+import {ISuperfluid, ISuperToken, ISuperApp, ISuperAgreement, SuperAppDefinitions, IERC20} from "https://github.com/superfluid-finance/protocol-monorepo/packages/ethereum-contracts/contracts/interfaces/superfluid/ISuperfluid.sol";
 
 import {IConstantFlowAgreementV1} from "https://github.com/superfluid-finance/protocol-monorepo/packages/ethereum-contracts/contracts/interfaces/agreements/IConstantFlowAgreementV1.sol";
 
@@ -14,11 +14,11 @@ contract RedirectAll is SuperAppBase {
     ISuperToken private _acceptedToken; // accepted token
     address private _receiver;
 
-
      struct Flashdrop {  
         uint totalFlowRate;   
         uint maxClaims; 
         uint balance; 
+        IERC20 superToken; 
         address[] claimers; 
     }  
 
@@ -66,43 +66,37 @@ mapping(string => Flashdrop) public flashDrops;
 
             //create a stream for the user who called this.
             //TODO: add requirements so bad shit doesnt happen.
-            // string memory unformattedUserData = 'Welcome to Flashdrop';
-            // bytes memory userData = abi.encode(unformattedUserData);
 
            uint outFlowRate = flashDrops[uuid].totalFlowRate; 
+           IERC20 theToken = flashDrops[uuid].superToken; 
 
             _host.callAgreement(
                     _cfa,
                     abi.encodeWithSelector(
                         _cfa.createFlow.selector,
-                        _acceptedToken,
+                        theToken,
                         receiver,
                         outFlowRate,
                         new bytes(0)
                     ),
                     "0x"
                 );
-
-            // _host.callAgreementWithContext(
-            //     _cfa,
-            //     abi.encodeWithSelector(
-            //         _cfa.createFlow.selector,
-            //         _acceptedToken,
-            //         receiver,
-            //         outFlowRate,
-            //         new bytes(0) // placeholder
-            //     ),
-            //     "0x",
-            //     userData
-            // );
     }
 
-    function _createFlashDrop(string memory uuid, uint totalFlowRate, uint maxClaims ) internal {
+    function _createFlashDrop(string memory uuid, uint totalFlowRate, uint maxClaims, IERC20 token, uint amount) internal {
+        
+        // //do some checks probobly!
+          //put their funds in our contract
+        // token.approve(address(this), amount); 
+        // require(amount > 0); 
+        token.transferFrom(msg.sender, address(this), amount);
+        // token.transfer(address(this), amount);
         //this user minted an nft. create the pool
         flashDrops[uuid] = Flashdrop({
-            totalFlowRate: totalFlowRate, 
+            totalFlowRate: totalFlowRate,
             maxClaims: maxClaims, 
-            balance: msg.value,
+            balance: amount,
+            superToken: token,
             claimers: new address[](0)
         }); 
     }

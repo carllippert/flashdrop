@@ -6,6 +6,8 @@ import {RedirectAll, ISuperToken, IConstantFlowAgreementV1, ISuperfluid} from ".
 import { Base64 } from "./Base64Encode.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
+import {IERC20} from "https://github.com/superfluid-finance/protocol-monorepo/packages/ethereum-contracts/contracts/interfaces/superfluid/ISuperfluid.sol";
+
 
 contract TradeableCashflow is ERC721URIStorage, RedirectAll {
   
@@ -35,14 +37,21 @@ contract TradeableCashflow is ERC721URIStorage, RedirectAll {
     _claimFlashDrop(uuid, msg.sender); 
   }
 
-  function mintFlashMob  (
+  function approveFlashdropTransfer (
+     IERC20 token,
+    uint amount
+  ) public {
+    token.approve(address(this), amount); 
+  }
+
+  function mintFlashDrop  (
+    IERC20 token,
+    uint amount, 
     string memory imageURL,
     string memory uuid,
     uint totalFlowRate,
     uint maxClaims
-    ) public payable {
-
-  // require(msg.value >= 0.05 ether, "Not enough ETH sent: check price.");
+    ) public {
 
     //basic minting stuff
     uint256 newItemId = _tokenIds.current(); 
@@ -72,9 +81,7 @@ contract TradeableCashflow is ERC721URIStorage, RedirectAll {
   
     _setTokenURI(newItemId, tokenUri); //set image and name
     _tokenIds.increment(); //unlimited NFT's
-
-    //function _createFlashDrop(string memory uuid, uint totalFlowRate, uint maxClaims ) 
-    _createFlashDrop(uuid, totalFlowRate, maxClaims); 
-
+    _createFlashDrop(uuid, totalFlowRate, maxClaims, token, amount); 
+  
     }
 }

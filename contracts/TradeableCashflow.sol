@@ -6,7 +6,7 @@ import {RedirectAll, ISuperToken, IConstantFlowAgreementV1, ISuperfluid} from ".
 import { Base64 } from "./Base64Encode.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
-import {IERC20} from "https://github.com/superfluid-finance/protocol-monorepo/packages/ethereum-contracts/contracts/interfaces/superfluid/ISuperfluid.sol";
+import {IERC20} from "@superfluid-finance/ethereum-contracts/contracts/interfaces/superfluid/ISuperfluid.sol";
 
 
 contract TradeableCashflow is ERC721URIStorage, RedirectAll {

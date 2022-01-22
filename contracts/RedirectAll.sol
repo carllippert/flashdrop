@@ -2,11 +2,11 @@
 pragma solidity ^0.8.0;
 pragma abicoder v2;
 
-import {ISuperfluid, ISuperToken, ISuperApp, ISuperAgreement, SuperAppDefinitions, IERC20} from "https://github.com/superfluid-finance/protocol-monorepo/packages/ethereum-contracts/contracts/interfaces/superfluid/ISuperfluid.sol";
+import {ISuperfluid, ISuperToken, ISuperApp, ISuperAgreement, SuperAppDefinitions, IERC20} from "@superfluid-finance/ethereum-contracts/contracts/interfaces/superfluid/ISuperfluid.sol";
 
-import {IConstantFlowAgreementV1} from "https://github.com/superfluid-finance/protocol-monorepo/packages/ethereum-contracts/contracts/interfaces/agreements/IConstantFlowAgreementV1.sol";
+import {IConstantFlowAgreementV1} from "@superfluid-finance/ethereum-contracts/contracts/interfaces/agreements/IConstantFlowAgreementV1.sol";
 
-import {SuperAppBase} from "https://github.com/superfluid-finance/protocol-monorepo/packages/ethereum-contracts/contracts/apps/SuperAppBase.sol";
+import {SuperAppBase} from "@superfluid-finance/ethereum-contracts/contracts/apps/SuperAppBase.sol";
 
 contract RedirectAll is SuperAppBase {
     ISuperfluid private _host; // host

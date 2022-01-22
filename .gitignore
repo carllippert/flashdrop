@@ -35,3 +35,5 @@ node_modules
 #Hardhat files
 cache
 # artifacts
+src/artifacts
+typechain-types

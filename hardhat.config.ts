@@ -23,17 +23,21 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
 const config: HardhatUserConfig = {
   solidity: "0.8.4",
   paths: {
-    artifacts: './src/artifacts'
+    artifacts: './src/artifacts',
   },
   networks: {
     hardhat: {
-      chainId: process.env.HARDHAT_CHAIN_ID ? Number.parseInt(process.env.HARDHAT_CHAIN_ID) : 1337
+      chainId: process.env.HARDHAT_CHAIN_ID ? Number.parseInt(process.env.HARDHAT_CHAIN_ID) : 1337,
+      forking: {
+        url: process.env.HARDHAT_FORKING_URL ?? '',
+        blockNumber: 14052791,
+      },
     },
     ropsten: {
       url: process.env.ROPSTEN_URL,
-      accounts: [`0x${process.env.ROPSTEN_PRIVATE_KEY}`]
-    }
-  }
+      accounts: [`0x${process.env.ROPSTEN_PRIVATE_KEY}`],
+    },
+  },
 };
 
 export default config;
